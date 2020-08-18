@@ -7,28 +7,30 @@
  */
 
 import React from 'react';
-import {StyleSheet, ScrollView, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {Container, Header, Button, Text, Icon} from 'native-base';
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Hello Wolrd</Text>
-    </View>
+    <Container style={styles.container}>
+      <Header style={{backgroundColor: '#1a1a1a'}}>
+        <Text style={styles.title}>Note List React </Text>
+      </Header>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
+    backgroundColor: '#262626',
   },
 
   title: {
-    fontSize: 50,
-    color: '#f00000',
+    fontSize: 40,
+    color: 'white',
     textAlign: 'center',
+    fontFamily: 'Do Hyeon',
   },
 });
 
