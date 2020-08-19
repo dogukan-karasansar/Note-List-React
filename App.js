@@ -12,7 +12,7 @@ import {StyleSheet, ScrollView, View, Text} from 'react-native';
 const App = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Hello Wolrd</Text>
+      <Text style={styles.title}>Hello World</Text>
     </View>
   );
 };
