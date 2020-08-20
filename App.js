@@ -6,40 +6,114 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {StyleSheet, ScrollView, View, Text} from 'react-native';
-import {Card, ListItem, Button, Icon} from 'react-native-elements';
+import React, {Component} from 'react';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {Header, Button, ListItem, Text} from 'react-native-elements';
 
-const App = () => {
-  return (
-    <View style={styles.container}>
-      <Card title="HELLO WORLD" image={require('./assets/images/baby.jpg')}>
-        <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
-        </Text>
-        <Button
-          icon={<Icon name="arrow-forward" color="#ffffff" />}
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0,
-          }}
-          title="VIEW NOW"
-        />
-      </Card>
-    </View>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'stretch',
+const list = [
+  {
+    id: 1,
+    title: 'Appointments',
   },
-});
+  {
+    id: 2,
+    title: 'Trips',
+  },
+];
+const visible = null;
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      trashVisible: false,
+    };
+  }
+
+  ShowHideComponent = () => {
+    if (this.state.trashVisible == true) {
+      this.setState({trashVisible: false});
+    } else {
+      this.setState({trashVisible: true});
+    }
+  };
+
+  visitDetail = (item) => {
+    console.log(item.title);
+  };
+  render() {
+    return (
+      <View>
+        <Header
+          backgroundColor={'#ffc966'}
+          placement="center"
+          centerComponent={{
+            text: 'Note List',
+            style: {color: '#fff', fontSize: 30, top: 0},
+          }}
+          leftComponent={
+            <Button
+              buttonStyle={{
+                backgroundColor: '#ffc966',
+              }}
+              icon={{
+                name: 'ios-trash',
+                size: 28,
+                color: '#517fa4',
+                type: 'ionicon',
+              }}
+              onPress={this.ShowHideComponent}
+            />
+          }
+          rightComponent={
+            <Button
+              buttonStyle={{
+                backgroundColor: '#ffc966',
+              }}
+              icon={{
+                name: 'ios-add',
+                size: 28,
+                color: '#517fa4',
+                type: 'ionicon',
+              }}
+              onPress={() => addAction()}
+            />
+          }
+        />
+        <View>
+          {list.map((item, i) => (
+            <TouchableOpacity key={i} onPress={this.visitDetail(item)}>
+              <ListItem
+                title={item.title}
+                leftIcon={
+                  this.state.trashVisible ? (
+                    <Button
+                      buttonStyle={{
+                        backgroundColor: 'white',
+                      }}
+                      icon={{
+                        name: 'ios-trash',
+                        size: 28,
+                        color: '#cc0000',
+                        type: 'ionicon',
+                      }}
+                    />
+                  ) : null
+                }
+                bottomDivider
+                chevron
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
+    );
+  }
+
+  addAction = () => {
+    console.log('Hello');
+  };
+}
+
+const styles = StyleSheet.create({});
 
 export default App;
