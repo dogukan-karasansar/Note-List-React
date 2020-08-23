@@ -9,6 +9,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {Header, Button, ListItem, Text} from 'react-native-elements';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const list = [
   {
@@ -20,25 +21,34 @@ const list = [
     title: 'Trips',
   },
 ];
+
 const visible = null;
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       trashVisible: false,
+      token: 'dasdfsjafhskhasdfhksf#dadasdasd',
     };
   }
 
-  ShowHideComponent = () => {
+  ShowHideComponent = async () => {
     if (this.state.trashVisible == true) {
       this.setState({trashVisible: false});
+      const value = await AsyncStorage.getItem('@storage_Key')
+      console.log(value);
     } else {
       this.setState({trashVisible: true});
     }
   };
-
-  visitDetail = (item) => {
-    console.log(item.title);
+  
+  visitDetail = async (item) => {
+    value = 'dogukantokend323424'
+    try {
+      await AsyncStorage.setItem('@storage_Key', value);
+    } catch (e) {
+      // saving error
+    }
   };
   render() {
     return (
